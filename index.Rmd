@@ -1,0 +1,44 @@
+---
+title: "Comparing models of irrational behaviour against individual variance"
+author: "Lenard Dome and Andy Wills"
+date: "`r format(Sys.time(), '%b %d, %Y')`"
+output:
+  xaringan::moon_reader:
+    css: ["libs/default.css", "libs/default-fonts.css"]
+    seal: true 
+    self_contained: false
+    nature:
+      ratio: "21:11"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: middle left inverse
+
+```{r, include = FALSE}
+library(emo)
+library(fontawesome)
+```
+
+---
+
+class: top left inverse
+
+# The Framework
+
+# The Method
+
+# The phenomenon
+
+# The Result
+
+# The Goal
+
+# The End
+

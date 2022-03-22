@@ -29,7 +29,14 @@ a, a > code {
 }
 
 .inverse {
-  background-color: #272822;
+  background-color: #161616;
+  color: #FDFCFC;
+  text-shadow: 0 0 20px #333;
+  font-size: 20px;
+}
+
+.full-black {
+  background-color: #000000;
   color: #FDFCFC;
   text-shadow: 0 0 20px #333;
 }
@@ -40,7 +47,8 @@ a, a > code {
 
 
 .inverse h2, .inverse h3 {
-  color: #f3f3f3;
+  color: #F37259;
+  font-size: 32px;
 }
 
 /* Two-column layout */

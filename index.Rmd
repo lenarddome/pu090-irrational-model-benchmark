@@ -26,19 +26,120 @@ library(emo)
 library(fontawesome)
 ```
 
+1. The framework
+1. The tools
+1. The phenomenon
+1. The findings
+
 ---
 
 class: top left inverse
 
-# The Framework
+## The Framework: *local* model behaviour
 
-# The Method
+<br><br>
 
-# The phenomenon
+> A measure of how well a model accommodates (reproduces) and already-observed data pattern. 
 
-# The Result
+```python
+if (model_single == human_aggregate):
+    print("Good Model")
+else:
+    print("Bad Model")
+```
 
-# The Goal
+TODO: add roberts and pashler reference
+...what it doesn't tell us:
+
+1. prediction
+2. heterogeneity
+3. *a priori* likelihood
+
+---
+
+class: top left inverse
+
+## The Framework: *global* model behaviour
+
+---
+
+class: top left inverse
+
+## The tools: parameter space partitioning
+
+.pull-left[
+
+<p style="align:center">
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/652405415?h=ffafca4001" width="640" height="426" frameborder="0" allowfullscreen></iframe>
+</p>
+
+]
+
+.pull-right[
+
+References and some other notes
+
+]
+
+---
+
+class: top left inverse
+
+## The tools: g-distance
+
+---
+
+class: top left inverse
+
+## The phenomenon: the inverse base-rate effect
+
+---
+
+class: top left inverse
+
+## The findings: method
+
+> The computer was on `r emo::ji("fire")`
+
+---
+
+class: top left inverse
+
+## The findings: result
+
+---
+
+class: top left inverse
+
+## The findings: conclusion
+
+---
+
+class: top left inverse
 
 # The End
 
+.pull-left[
+
+### [Lenard Dome](https://lenarddome.github.io/)
+
+* [`r fontawesome::fa("envelope", fill = "gray")` lenard.dome@plymouth.ac.uk](mailto:lenard.dome@plymouth.ac.uk)
+* [`r fontawesome::fa("github", fill = "white")` @lenarddome](https://github.com/lenarddome)
+* [`r fontawesome::fa("twitter", fill = "blue")` @lenarddome](https://twitter.com/lenarddome)
+
+### [Andy Wills](https://www.andywills.info/)
+
+* `r fontawesome::fa("envelope")` [andy.wills@plymouth.ac.uk](mailto:andy.wills@plymouth.ac.uk)
+
+
+]
+
+.pull-right[
+
+```{r, echo=FALSE, out.width="300px"}
+knitr::include_graphics("./assets/plymouth.png")
+knitr::include_graphics("./assets/ESRC_logo.png")
+knitr::include_graphics("./assets/BRIC.png")
+```
+
+]

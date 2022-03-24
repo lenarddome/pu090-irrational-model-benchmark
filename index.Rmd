@@ -22,44 +22,67 @@ options(htmltools.dir.version = FALSE)
 class: middle left inverse
 
 ```{r, include = FALSE}
+library(data.table)
+library(Cairo)
+library(ggplot2)
+library(ggthemes)
+library(ggrepel)
 library(emo)
 library(fontawesome)
+library(ply207)
+library(gt)
 ```
+
+.left-column[
+
+## XKCD:2323
+
+[![xkcd](https://imgs.xkcd.com/comics/modeling_study.png)](https://xkcd.com/2323)
+
+]
+
+.right-column[
+
+## Structure
 
 1. The framework
 1. The tools
 1. The phenomenon
+1. The method
 1. The findings
+
+]
 
 ---
 
 class: top left inverse
 
-## The Framework: *local* model behaviour
+## The framework: *local* model behaviour
 
 <br><br>
 
 > A measure of how well a model accommodates (reproduces) and already-observed data pattern. 
 
 ```python
-if (model_single == human_aggregate):
+if (model_value == human_aggregate):
     print("Good Model")
 else:
     print("Bad Model")
 ```
 
-TODO: add roberts and pashler reference
-...what it doesn't tell us:
-
-1. prediction
-2. heterogeneity
-3. *a priori* likelihood
+...what it doesn't tell us...
 
 ---
 
 class: top left inverse
 
-## The Framework: *global* model behaviour
+## The framework: *global* model behaviour
+
+Robert and Pashler (2000)
+
+1. `prediction` What does the model say will happen?
+2. `heterogeneity` Between-subject variability is not explained by goodness-of-fit.
+3. `*a priori* likelihood` How likely that the model will be a good fit?
 
 ---
 
@@ -77,7 +100,23 @@ class: top left inverse
 
 .pull-right[
 
-References and some other notes
+<br>
+
+* *To model behavior, we need to know how models behave* (Pitt, Kim, MNavarro, Myung, 2006)
+* MCMC method to define disjointed regions in the parameter space
+* Tells us what unobserved results the model predicts
+
+We implemented the technique in an `r fontawesome::fa("r-project", fill = "blue")` package:
+
+[psp](https://lenarddome.github.io/software/psp/)
+
+[![R-CMD-check](https://github.com/lenarddome/psp/actions/workflows/main.yml/badge.svg)](https://github.com/lenarddome/psp/actions/workflows/main.yml)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/psp)](https://cran.r-project.org/package=psp)
+![CRAN/METACRAN](https://img.shields.io/cran/v/psp)
+![CRAN/METACRAN](https://img.shields.io/cran/l/psp)
+
+
+<a href="https://www.buymeacoffee.com/lenarddome" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="57"></a>
 
 ]
 
@@ -86,6 +125,51 @@ References and some other notes
 class: top left inverse
 
 ## The tools: g-distance
+
+.pull-left[
+
+```{r, echo = FALSE, out.width = "600px"}
+knitr::include_graphics("./assets/venn.png")
+```
+
+]
+
+.pull-right[
+
+<br>
+
+Sufficiency of **accomodation** $\alpha = \frac{\vert M \cap H \vert}{\vert H \vert}$
+
+Breadth of **prediction** $\beta = \frac{\vert M \cap H^{'} \vert}{\vert H^{'} \vert}$
+
+***
+
+*g-distance* is then the distance between our model and an [ideal model in an ideal scenario]
+
+\begin{equation}
+g =  \sqrt{ w_{\alpha} (1 - \alpha)^2 + (1 - w_{\alpha}) (0 - \beta)^2},
+\end{equation}
+
+]
+---
+
+class: middle center inverse
+
+```{r example-distances, echo = FALSE, fig.height = 5, fig.width = 7}
+models <- data.table(alpha = c(1, 0, 0, 1),
+                     beta = c(0, 0, 1, 1),
+                     g = c(0, 0.707, 1, 0.707),
+                     coordinates = c("[0, 1]", "[0, 0]", "1, 1", "1, 0"),
+                     models = c("[ideal model]", "Model^1",
+                              "Model^2", "Model^3"))
+
+ggplot(models, aes(x = beta, y = alpha, label = g, shape = models)) +
+  geom_point(size = 4) +
+  geom_label_repel(size = 6) +
+  theme_clean() +
+  ylab("Accomodation") +
+  xlab("Prediction")
+```
 
 ---
 
@@ -97,15 +181,68 @@ class: top left inverse
 
 class: top left inverse
 
-## The findings: method
+## Method: ordinal patterns
 
-> The computer was on `r emo::ji("fire")`
+Ordinal patterns are a qualitative description of a relationship between an independent variable as defined by at least one of the dependent variables.
+
+
+.pull-left[
+
+**Directed Graph**
+
+```{r, echo = FALSE}
+knitr::include_graphics("./assets/ordinal_directed_graph.png")
+```
+]
+
+.pull-right[
+
+**Inequality Matrices**
+
+```{r, echo = FALSE}
+i = dome21$ppt[nrow(dome21)]
+trial_order <- dome21[ppt == i]$abstim
+phase_index <- dome21[ppt == i]$phase
+phase_index[phase_index == "training"] <- 0
+phase_index[phase_index == "test"] <- 2
+phase_index <- as.numeric(phase_index)
+trials <- dome21[ppt == i]$trial
+train <- dome21train(trial_order = trial_order,
+                             phase_index = phase_index,
+                             trials = trials,
+                             ppt = i)
+
+out <- imacEXIT(stimuli = c("BC", "B", "C", "A"), tr = train, thresholds = c(0.10, -0.10))
+
+out_names <- cbind(stimuli = rownames(out), out)
+gt(out_names, rowname_col = "stimuli")
+```
+]
 
 ---
 
 class: top left inverse
 
-## The findings: result
+## Method: procedure
+
+### Empirical
+
+* We implemented IBRE in the simplest way possible
+* Stopped data collection at 117 participants
+* Confirmed group-level results
+
+### Computational
+
+* All models were implemented in `catlearn` [`r fontawesome::fa("github", fill = "white")`](https://github.com/ajwills72/catlearn) [`r fontawesome::fa("r-project", fill = "blue")`](https://cran.r-project.org/web/packages/catlearn/index.html)
+* Ran PSP for each participant on different ordinal complexities
+
+---
+
+class: top left inverse
+
+## The findings: results
+
+> The computer was on a figurative `r emo::ji("fire")`
 
 ---
 
@@ -123,20 +260,23 @@ class: top left inverse
 
 ### [Lenard Dome](https://lenarddome.github.io/)
 
+<a href="https://www.buymeacoffee.com/lenarddome" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="57"></a>
+
 * [`r fontawesome::fa("envelope", fill = "gray")` lenard.dome@plymouth.ac.uk](mailto:lenard.dome@plymouth.ac.uk)
 * [`r fontawesome::fa("github", fill = "white")` @lenarddome](https://github.com/lenarddome)
 * [`r fontawesome::fa("twitter", fill = "blue")` @lenarddome](https://twitter.com/lenarddome)
 
 ### [Andy Wills](https://www.andywills.info/)
 
-* `r fontawesome::fa("envelope")` [andy.wills@plymouth.ac.uk](mailto:andy.wills@plymouth.ac.uk)
-
+* [`r fontawesome::fa("envelope", fill = "gray")` andy.wills@plymouth.ac.uk](mailto:andy.wills@plymouth.ac.uk)
+* [`r fontawesome::fa("github", fill = "white")` @ajwills72](https://github.com/ajwills72)
+* [`r fontawesome::fa("twitter", fill = "blue")` @ajwills72](https://twitter.com/ajwills72)
 
 ]
 
 .pull-right[
 
-```{r, echo=FALSE, out.width="300px"}
+```{r, echo=FALSE, out.width="400px"}
 knitr::include_graphics("./assets/plymouth.png")
 knitr::include_graphics("./assets/ESRC_logo.png")
 knitr::include_graphics("./assets/BRIC.png")

@@ -87,8 +87,8 @@ blockquote {
   border-bottom: 1px solid #666;
 }
 .remark-slide table thead th { border-bottom: 1px solid #ddd; }
-th, td { padding: 5px; }
-.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #eee }
+th, td { padding: 10px; }
+.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #000 }
 
 @page { margin: 0; }
 @media print {
@@ -99,4 +99,11 @@ th, td { padding: 5px; }
     top: 0 !important;
     left: 0 !important;
   }
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

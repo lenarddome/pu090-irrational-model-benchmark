@@ -12,6 +12,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+bibliography: references.bib
 ---
 
 
@@ -22,6 +23,7 @@ options(htmltools.dir.version = FALSE)
 class: middle left inverse
 
 ```{r, include = FALSE}
+options(knitr.kable.NA = "")
 library(data.table)
 library(Cairo)
 library(ggplot2)
@@ -40,7 +42,6 @@ library(gt)
 [![xkcd](https://imgs.xkcd.com/comics/modeling_study.png)](https://xkcd.com/2323)
 
 ]
-
 .right-column[
 
 ## Structure
@@ -177,6 +178,30 @@ class: top left inverse
 
 ## The phenomenon: the inverse base-rate effect
 
+.pull-left[
+
+### Abstract Design
+
+|Training | Test |
+| -- | -- |
+| $AB \to common$ x3 | A, B, C |
+| $AC \to rare$ x1 |  BC |
+
+]
+
+.pull-right[
+
+* Participants overwhelmingly prefer $BC \to rare$
+* $BC \to rare$ is observed even when:
+  * participants trained to accuracy
+  * participants has low accuracy
+  * stimuli are pictures, colours, symptoms, person characteristics
+
+FIXME: Don review
+See this excellent paper for a more thorough review, 
+
+]
+
 ---
 
 class: top left inverse
@@ -214,9 +239,11 @@ train <- dome21train(trial_order = trial_order,
 
 out <- imacEXIT(stimuli = c("BC", "B", "C", "A"), tr = train, thresholds = c(0.10, -0.10))
 
-out_names <- cbind(stimuli = rownames(out), out)
-gt(out_names, rowname_col = "stimuli")
+out[out == "NA"] <- ""
+
+knitr::kable(out, align = c("lccccc"))
 ```
+
 ]
 
 ---
@@ -254,11 +281,11 @@ class: top left inverse
 
 class: top left inverse
 
-# The End
+## The End
 
 .pull-left[
 
-### [Lenard Dome](https://lenarddome.github.io/)
+### <img src="./assets/avatar_lenard.jpg" alt="Avatar" class="avatar"> [Lenard Dome](https://lenarddome.github.io/)
 
 <a href="https://www.buymeacoffee.com/lenarddome" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="57"></a>
 
@@ -266,7 +293,7 @@ class: top left inverse
 * [`r fontawesome::fa("github", fill = "white")` @lenarddome](https://github.com/lenarddome)
 * [`r fontawesome::fa("twitter", fill = "blue")` @lenarddome](https://twitter.com/lenarddome)
 
-### [Andy Wills](https://www.andywills.info/)
+### <img src="./assets/avatar_andy.png" alt="Avatar" class="avatar"> [Andy Wills](https://www.andywills.info/)
 
 * [`r fontawesome::fa("envelope", fill = "gray")` andy.wills@plymouth.ac.uk](mailto:andy.wills@plymouth.ac.uk)
 * [`r fontawesome::fa("github", fill = "white")` @ajwills72](https://github.com/ajwills72)
@@ -283,3 +310,6 @@ knitr::include_graphics("./assets/BRIC.png")
 ```
 
 ]
+
+---
+

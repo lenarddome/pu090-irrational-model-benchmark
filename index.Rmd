@@ -33,6 +33,15 @@ library(emo)
 library(fontawesome)
 library(ply207)
 library(gt)
+
+## import data
+
+fnames <- list.files(path = 'data', include.dirs = T, full.names = T)
+for (i in seq(fnames)) {
+  load(fnames[i])
+}
+rm(fnames, i)
+
 ```
 
 .left-column[
@@ -156,7 +165,7 @@ g =  \sqrt{ w_{\alpha} (1 - \alpha)^2 + (1 - w_{\alpha}) (0 - \beta)^2},
 
 class: middle center inverse
 
-```{r example-distances, echo = FALSE, fig.height = 5, fig.width = 7}
+```{r example-distances, echo = FALSE, fig.height = 2, fig.width = 4, dpi = 200}
 models <- data.table(alpha = c(1, 0, 0, 1),
                      beta = c(0, 0, 1, 1),
                      g = c(0, 0.707, 1, 0.707),
@@ -165,8 +174,8 @@ models <- data.table(alpha = c(1, 0, 0, 1),
                               "Model^2", "Model^3"))
 
 ggplot(models, aes(x = beta, y = alpha, label = g, shape = models)) +
-  geom_point(size = 4) +
-  geom_label_repel(size = 6) +
+  geom_point(size = 2) +
+  geom_label_repel(size = 4) +
   theme_clean() +
   ylab("Accomodation") +
   xlab("Prediction")
@@ -269,7 +278,23 @@ class: top left inverse
 
 ## The findings: results
 
+.pull-left[
+
 > The computer was on a figurative `r emo::ji("fire")`
+
+]
+
+.pull-right[
+
+```{r, echo = FALSE}
+modtab <- btab %>%
+ tab_options(
+  table.background.color = "#000")
+modtab
+```
+
+]
+
 
 ---
 

@@ -71,6 +71,9 @@ class: top left inverse
 
 <br><br>
 
+* The traditional approach used in all areas of Psychology
+* A measure of how well a model accommodates an already observed data pattern
+
 > A measure of how well a model accommodates (reproduces) and already-observed data pattern. 
 
 ```python
@@ -80,19 +83,19 @@ else:
     print("Bad Model")
 ```
 
-...what it doesn't tell us...
-
 ---
 
 class: top left inverse
 
 ## The framework: *global* model behaviour
 
-Robert and Pashler (2000)
+Robert and Pashler (2000) pointed out three distinct areas not covered by a goodness-of-fit:
 
 1. `prediction` What does the model say will happen?
 2. `heterogeneity` Between-subject variability is not explained by goodness-of-fit.
 3. `*a priori* likelihood` How likely that the model will be a good fit?
+
+We evaluate models on these neglected areas of formal modelling.
 
 ---
 
@@ -135,6 +138,8 @@ We implemented the technique in an `r fontawesome::fa("r-project", fill = "blue"
 class: top left inverse
 
 ## The tools: g-distance
+
+TODO: introduce accomodation and prediction separately
 
 .pull-left[
 
@@ -271,12 +276,17 @@ class: top left inverse
 
 * All models were implemented in `catlearn` [`r fontawesome::fa("github", fill = "white")`](https://github.com/ajwills72/catlearn) [`r fontawesome::fa("r-project", fill = "blue")`](https://cran.r-project.org/web/packages/catlearn/index.html)
 * Ran PSP for each participant on different ordinal complexities
+* Models we tested: EXIT, NNCAG, DGCM
 
 ---
 
 class: top left inverse
 
 ## The findings: results
+
+TODO: round to two decimal places
+TODO: separate slides for each level of complexities
+TODO: add human results as well
 
 .pull-left[
 
@@ -301,6 +311,16 @@ modtab
 class: top left inverse
 
 ## The findings: conclusion
+
+#### Methodological
+
+* Developed a novel method to evaluate aspects of computational models often neglected
+
+#### Theoretical
+
+* Provided evidence against EXIT, the best model of IBRE
+* EXIT suffers from an excess of flexibility
+* The most adequate model is a non-associative learning model
 
 ---
 
@@ -335,6 +355,3 @@ knitr::include_graphics("./assets/BRIC.png")
 ```
 
 ]
-
----
-

@@ -89,13 +89,19 @@ class: top left inverse
 
 ## The framework: *global* model behaviour
 
-Robert and Pashler (2000) pointed out three distinct areas not covered by a goodness-of-fit:
+Roberts and Pashler (2000) pointed out three distinct areas not covered by a goodness-of-fit:
 
 1. `prediction` What does the model say will happen?
 2. `heterogeneity` Between-subject variability is not explained by goodness-of-fit.
 3. `*a priori* likelihood` How likely that the model will be a good fit?
 
 We evaluate models on these neglected areas of formal modelling.
+
+.footnote[
+
+Roberts, S., & Pashler, H. (2000). How persuasive is a good fit? A comment on theory testing. Psychological review, 107(2), 358.
+
+]
 
 ---
 
@@ -139,33 +145,43 @@ class: top left inverse
 
 ## The tools: g-distance
 
-TODO: introduce accomodation and prediction separately
-
-.pull-left[
-
 ```{r, echo = FALSE, out.width = "600px"}
 knitr::include_graphics("./assets/venn.png")
 ```
 
-]
+***
 
-.pull-right[
+The relationship between these sets will be our measure
 
-<br>
+---
 
-Sufficiency of **accomodation** $\alpha = \frac{\vert M \cap H \vert}{\vert H \vert}$
+class: top left inverse
 
-Breadth of **prediction** $\beta = \frac{\vert M \cap H^{'} \vert}{\vert H^{'} \vert}$
+## The tools: g-distance
+
+```{r, echo = FALSE, out.width = "600px"}
+knitr::include_graphics("./assets/accomodation.png")
+```
 
 ***
 
-*g-distance* is then the distance between our model and an [ideal model in an ideal scenario]
+Sufficiency of **accomodation** $\alpha = \frac{\vert M \cap H \vert}{\vert H \vert}$
 
-\begin{equation}
-g =  \sqrt{ w_{\alpha} (1 - \alpha)^2 + (1 - w_{\alpha}) (0 - \beta)^2},
-\end{equation}
+---
 
-]
+class: top left inverse
+
+## The tools: g-distance
+
+
+```{r, echo = FALSE, out.width = "600px"}
+knitr::include_graphics("./assets/prediction.png")
+```
+
+***
+
+Breadth of **prediction** $\beta = \frac{\vert M \cap H^{'} \vert}{\vert H^{'} \vert}$
+
 ---
 
 class: middle center inverse
@@ -186,6 +202,14 @@ ggplot(models, aes(x = beta, y = alpha, label = g, shape = models)) +
   xlab("Prediction")
 ```
 
+***
+
+*g-distance* is then the distance between our model and an [ideal model in an ideal scenario]
+
+\begin{equation}
+g =  \sqrt{ w_{\alpha} (1 - \alpha)^2 + (1 - w_{\alpha}) (0 - \beta)^2},
+\end{equation}
+
 ---
 
 class: top left inverse
@@ -205,15 +229,20 @@ class: top left inverse
 
 .pull-right[
 
+<br><br>
+
 * Participants overwhelmingly prefer $BC \to rare$
 * $BC \to rare$ is observed even when:
-  * participants trained to accuracy
-  * participants has low accuracy
+  * participants have high accuracy
+  * participants have low accuracy
   * stimuli are pictures, colours, symptoms, person characteristics
 
-FIXME: Don review
-See this excellent paper for a more thorough review, 
+See Don, Worthy and Livesey (2021)'s excellent paper for a more thorough review.
 
+]
+
+.footnote[
+Don, H. J., Worthy, D. A., & Livesey, E. J. (2021). Hearing hooves, thinking zebras: A review of the inverse base-rate effect. Psychonomic Bulletin & Review, 28(4), 1142-1163.
 ]
 
 ---
@@ -284,27 +313,94 @@ class: top left inverse
 
 ## The findings: results
 
-TODO: round to two decimal places
-TODO: separate slides for each level of complexities
-TODO: add human results as well
-
 .pull-left[
 
 > The computer was on a figurative `r emo::ji("fire")`
+
+* There are 3 possible patterns.
+* Hmans showed all three.
+
+```{r, echo = FALSE}
+unique(HUMAN_1)
+```
 
 ]
 
 .pull-right[
 
+<br><br>
+
 ```{r, echo = FALSE}
-modtab <- btab %>%
- tab_options(
-  table.background.color = "#000")
-modtab
+big_table[pattern == "BC"] %>%
+  gt(rowname_col = "system") %>%
+  fmt_number(columns = 2:4, decimals = 2) %>%
+  tab_options(table.background.color = "#000") %>%
+ cols_label(distance = md("*g-distance*"), alpha = "accomodation", beta = "prediction")
 ```
 
 ]
 
+---
+
+class: top left inverse
+
+## The findings: results (increasing complexity)
+
+.pull-left[
+
+* There are 19 possible patterns
+* Humans showed 17 of them.
+
+```{r, echo = FALSE}
+unique(HUMAN_2)[16]
+```
+
+]
+
+.pull-right[
+
+<br><br>
+
+```{r, echo = FALSE}
+big_table[pattern == c("BC, A")] %>%
+  gt(rowname_col = "system") %>%
+  fmt_number(columns = 2:4, decimals = 2) %>%
+  tab_options(table.background.color = "#000") %>%
+ cols_label(distance = md("*g-distance*"), alpha = "accomodation", beta = "prediction")
+```
+
+]
+
+---
+
+class: top left inverse
+
+## The findings: results (increasing complexity more)
+
+.pull-left[
+
+* There are 171 possible patterns
+* Humans showed 41 of them.
+
+```{r, echo = FALSE}
+unique(HUMAN_3)[10]
+```
+
+]
+
+.pull-right[
+
+<br><br>
+
+```{r, echo = FALSE}
+big_table[pattern == c("BC, B, C")] %>%
+  gt(rowname_col = "system") %>%
+  fmt_number(columns = 2:4, decimals = 2) %>%
+  tab_options(table.background.color = "#000") %>%
+ cols_label(distance = md("*g-distance*"), alpha = "accomodation", beta = "prediction")
+```
+
+]
 
 ---
 

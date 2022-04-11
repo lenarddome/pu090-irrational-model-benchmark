@@ -381,11 +381,12 @@ class: top left inverse
 
 * There are 171 possible patterns
 * Humans showed 41 of them.
+* EXIT showed 70 of them (41%) - independent of trial order.
+
 
 ```{r, echo = FALSE}
 unique(HUMAN_3)[10]
 ```
-
 ]
 
 .pull-right[
@@ -415,8 +416,9 @@ class: top left inverse
 #### Theoretical
 
 * Provided evidence against EXIT, the best model of IBRE
-* EXIT suffers from an excess of flexibility
-* The most adequate model is a non-associative learning model
+  * *EXIT has an issue of flexibility when trial-order is not accounted for*
+* The most adequate model is a non-associative learning model, DGCM
+  * *but it suffers from a metatheoretical issue*
 
 ---
 

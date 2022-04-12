@@ -8,7 +8,7 @@ output:
     seal: true 
     self_contained: false
     nature:
-      ratio: "21:11"
+      ratio: "21:12"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -67,26 +67,6 @@ rm(fnames, i)
 
 class: top left inverse
 
-## The framework: *local* model behaviour
-
-<br><br>
-
-* The traditional approach used in all areas of Psychology
-* A measure of how well a model accommodates an already observed data pattern
-
-> A measure of how well a model accommodates (reproduces) and already-observed data pattern. 
-
-```python
-if (model_value == human_aggregate):
-    print("Good Model")
-else:
-    print("Bad Model")
-```
-
----
-
-class: top left inverse
-
 ## The framework: *global* model behaviour
 
 Roberts and Pashler (2000) pointed out three distinct areas not covered by a goodness-of-fit:
@@ -126,7 +106,6 @@ class: top left inverse
 * Tells us what unobserved results the model predicts
 
 We implemented the technique in an `r fontawesome::fa("r-project", fill = "blue")` package:
-
 [psp](https://lenarddome.github.io/software/psp/)
 
 [![R-CMD-check](https://github.com/lenarddome/psp/actions/workflows/main.yml/badge.svg)](https://github.com/lenarddome/psp/actions/workflows/main.yml)
@@ -137,6 +116,10 @@ We implemented the technique in an `r fontawesome::fa("r-project", fill = "blue"
 
 <a href="https://www.buymeacoffee.com/lenarddome" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="57"></a>
 
+]
+
+.footnote[
+Pitt, M. A., Kim, W., Navarro, D. J., & Myung, J. I. (2006). Global model analysis by parameter space partitioning. Psychological Review, 113(1), 57.
 ]
 
 ---
@@ -299,7 +282,8 @@ class: top left inverse
 
 * We implemented IBRE in the simplest way possible
 * Stopped data collection at 117 participants
-* Confirmed group-level results
+* Long test phase
+* Confirmed group-level resultsfo $BC \to rare$ > $BC \to common$
 
 ### Computational
 

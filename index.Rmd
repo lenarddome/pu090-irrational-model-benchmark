@@ -101,7 +101,7 @@ class: top left inverse
 
 <br>
 
-* *To model behavior, we need to know how models behave* (Pitt, Kim, MNavarro, Myung, 2006)
+* *To model behavior, we need to know how models behave* (Pitt, Kim, Navarro, Myung, 2006)
 * MCMC method to define disjointed regions in the parameter space
 * Tells us what unobserved results the model predicts
 

@@ -283,7 +283,7 @@ class: top left inverse
 * We implemented IBRE in the simplest way possible
 * Stopped data collection at 117 participants
 * Long test phase
-* Confirmed group-level resultsfo $BC \to rare$ > $BC \to common$
+* Confirmed group-level results: $BC \to rare$ > $BC \to common$
 
 ### Computational
 

@@ -288,8 +288,8 @@ class: top left inverse
 ### Computational
 
 * All models were implemented in `catlearn` [`r fontawesome::fa("github", fill = "white")`](https://github.com/ajwills72/catlearn) [`r fontawesome::fa("r-project", fill = "blue")`](https://cran.r-project.org/web/packages/catlearn/index.html)
-* Ran PSP for each participant on different ordinal complexities
-* Models we tested: EXIT, NNCAG, DGCM
+* Ran PSP for each participant on different ordinal complexities (sampled almost a billion parameter sets)
+* Models we tested: EXIT (best), NNCAG (simplified EXIT), DGCM
 
 ---
 
@@ -299,7 +299,7 @@ class: top left inverse
 
 .pull-left[
 
-> The computer was on a figurative `r emo::ji("fire")`
+> The computer was on figurative `r emo::ji("fire")`
 
 * There are 3 possible patterns.
 * Hmans showed all three.
